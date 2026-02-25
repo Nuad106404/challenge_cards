@@ -1,0 +1,10 @@
+# Copy this file to local.properties and fill in your values.
+# local.properties is gitignored — never commit real credentials.
+
+# Flutter SDK path (set automatically by Flutter tooling, or set manually)
+# flutter.sdk=/path/to/flutter
+
+# AdMob App ID — injected into AndroidManifest.xml at build time.
+# Get this from your AdMob console: Apps > App settings > App ID
+# Format: ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx  (note the tilde ~)
+ADMOB_APP_ID=ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx

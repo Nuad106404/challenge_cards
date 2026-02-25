@@ -1,0 +1,31 @@
+name: challenge_cards
+description: Party Challenge Cards - a party game app.
+publish_to: 'none'
+version: 1.0.1+2
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  shared_preferences: ^2.2.3
+  provider: ^6.1.2
+  google_mobile_ads: ^5.1.0
+  flutter_dotenv: ^5.1.0
+  equatable: ^2.0.5
+  uuid: ^4.4.0
+  sensors_plus: ^6.1.0
+  url_launcher: ^6.3.0
+  cached_network_image: ^3.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env

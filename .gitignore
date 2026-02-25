@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.g.dart
+*.freezed.dart
+
+# Android
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/build/
+
+# iOS
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+
+# Uploads (binary assets)
+api/uploads/

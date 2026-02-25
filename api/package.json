@@ -1,0 +1,52 @@
+{
+  "name": "@challenge-cards/api",
+  "version": "1.0.0",
+  "description": "Challenge Cards NestJS Backend API",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.3.0",
+    "@nestjs/config": "^3.2.0",
+    "@nestjs/core": "^10.3.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "^2.0.5",
+    "@nestjs/mongoose": "^10.0.4",
+    "@nestjs/passport": "^10.0.3",
+    "@nestjs/platform-express": "^10.3.0",
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "mongoose": "^8.2.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.3.0",
+    "@nestjs/schematics": "^10.1.0",
+    "@nestjs/testing": "^10.3.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^20.11.0",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/passport-local": "^1.0.38",
+    "typescript": "^5.3.3"
+  }
+}
