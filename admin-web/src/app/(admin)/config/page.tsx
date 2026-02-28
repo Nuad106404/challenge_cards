@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import AdminLayout from '@/components/layout/AdminLayout';
 import { useConfig } from '@/hooks/useConfig';
 import { SupportedLanguage } from '@/types';
 import { Toggle } from '@/components/shared/ui';
@@ -127,7 +126,7 @@ export default function ConfigPage() {
   );
 
   return (
-    <AdminLayout>
+    <>
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
         @keyframes spin   { to { transform:rotate(360deg); } }
@@ -448,6 +447,6 @@ export default function ConfigPage() {
           </div>
         </>
       )}
-    </AdminLayout>
+    </>
   );
 }

@@ -45,7 +45,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       },
     );
     _fetchLocalAds();
-    
+
     _bgController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 12),
@@ -68,11 +68,11 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   void _startAdRotation() {
     _adRotationTimer?.cancel();
     if (_localAds.isEmpty || !mounted) return;
-    
+
     // Get global rotation duration from config
     final config = ConfigService.instance.current;
     final duration = Duration(seconds: config?.adRotationDuration ?? 5);
-    
+
     _adRotationTimer = Timer(duration, () {
       if (!mounted) return;
       setState(() {
@@ -146,8 +146,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   style: TextStyle(fontSize: 16, color: Colors.grey)),
               const SizedBox(height: 24),
               FilledButton(
-                onPressed: () =>
-                    Navigator.popUntil(context, (r) => r.isFirst),
+                onPressed: () => Navigator.popUntil(context, (r) => r.isFirst),
                 child: const Text('Back to Home'),
               ),
             ],
@@ -277,14 +276,14 @@ class _CircleIconButton extends StatelessWidget {
       child: Container(
         width: 40,
         height: 40,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: const Color(0x14000000),
+              color: Color(0x14000000),
               blurRadius: 10,
-              offset: const Offset(0, 3),
+              offset: Offset(0, 3),
             ),
           ],
         ),
@@ -312,7 +311,8 @@ class _LocalOrAdmobBanner extends StatelessWidget {
   String _resolveUrl(String url) {
     if (url.startsWith('http')) return url;
     String apiBase = dotenv.env['API_BASE_URL'] ?? 'http://localhost:3001';
-    if (apiBase.endsWith('/api')) apiBase = apiBase.substring(0, apiBase.length - 4);
+    if (apiBase.endsWith('/api'))
+      apiBase = apiBase.substring(0, apiBase.length - 4);
     return '$apiBase$url';
   }
 
@@ -469,7 +469,11 @@ class _AbstractBgPainter extends CustomPainter {
     final wave1 = Path();
     for (double x = 0; x <= w; x += 2) {
       final y = h * 0.18 + sin((x / w) * 2 * pi + t2pi) * 28;
-      if (x == 0) wave1.moveTo(x, y); else wave1.lineTo(x, y);
+      if (x == 0) {
+        wave1.moveTo(x, y);
+      } else {
+        wave1.lineTo(x, y);
+      }
     }
     canvas.drawPath(wave1, _stroke);
 
@@ -480,7 +484,11 @@ class _AbstractBgPainter extends CustomPainter {
     final wave2 = Path();
     for (double x = 0; x <= w; x += 2) {
       final y = h * 0.72 + sin((x / w) * 2 * pi - t2pi * 0.7 + 1.2) * 22;
-      if (x == 0) wave2.moveTo(x, y); else wave2.lineTo(x, y);
+      if (x == 0) {
+        wave2.moveTo(x, y);
+      } else {
+        wave2.lineTo(x, y);
+      }
     }
     canvas.drawPath(wave2, _stroke);
 
@@ -491,8 +499,13 @@ class _AbstractBgPainter extends CustomPainter {
     canvas.save();
     canvas.translate(w * 0.82, h * 0.14);
     canvas.rotate(t2pi * 0.08);
-    canvas.drawPath(Path()
-      ..moveTo(0, -90)..lineTo(78, 45)..lineTo(-78, 45)..close(), _stroke);
+    canvas.drawPath(
+        Path()
+          ..moveTo(0, -90)
+          ..lineTo(78, 45)
+          ..lineTo(-78, 45)
+          ..close(),
+        _stroke);
     canvas.restore();
 
     // ── Medium triangle — bottom-left ──────────────────────────────────────
@@ -502,8 +515,13 @@ class _AbstractBgPainter extends CustomPainter {
     canvas.save();
     canvas.translate(w * 0.12, h * 0.78);
     canvas.rotate(-t2pi * 0.06 + 0.4);
-    canvas.drawPath(Path()
-      ..moveTo(0, -70)..lineTo(60, 35)..lineTo(-60, 35)..close(), _stroke);
+    canvas.drawPath(
+        Path()
+          ..moveTo(0, -70)
+          ..lineTo(60, 35)
+          ..lineTo(-60, 35)
+          ..close(),
+        _stroke);
     canvas.restore();
 
     // ── Rotating diamond — center-right ───────────────────────────────────
@@ -513,8 +531,14 @@ class _AbstractBgPainter extends CustomPainter {
     canvas.save();
     canvas.translate(w * 0.88, h * 0.52 + sin(t2pi) * 20);
     canvas.rotate(t2pi * 0.12);
-    canvas.drawPath(Path()
-      ..moveTo(0, -44)..lineTo(26, 0)..lineTo(0, 44)..lineTo(-26, 0)..close(), _stroke);
+    canvas.drawPath(
+        Path()
+          ..moveTo(0, -44)
+          ..lineTo(26, 0)
+          ..lineTo(0, 44)
+          ..lineTo(-26, 0)
+          ..close(),
+        _stroke);
     canvas.restore();
 
     // ── Hexagon — left mid ─────────────────────────────────────────────────
@@ -530,7 +554,11 @@ class _AbstractBgPainter extends CustomPainter {
       final a = (i * 60 - 30) * pi / 180;
       final px = hR * sin(a + pi / 2);
       final py = hR * sin(a);
-      if (i == 0) hex.moveTo(px, py); else hex.lineTo(px, py);
+      if (i == 0) {
+        hex.moveTo(px, py);
+      } else {
+        hex.lineTo(px, py);
+      }
     }
     hex.close();
     canvas.drawPath(hex, _stroke);
@@ -554,7 +582,9 @@ class _AbstractBgPainter extends CustomPainter {
         final pulse = 0.5 + 0.5 * sin(t2pi + (x + y) / 120);
         _dotPaint.color = Color.fromARGB(
           (pulse * 0x18).round(),
-          0xFF, 0x4D, 0x8D,
+          0xFF,
+          0x4D,
+          0x8D,
         );
         canvas.drawCircle(Offset(x, y), dotR, _dotPaint);
       }
@@ -570,7 +600,10 @@ class _AbstractBgPainter extends CustomPainter {
         width: w * 0.75,
         height: w * 0.75,
       ),
-      pi + 0.3, 0.9, false, _stroke,
+      pi + 0.3,
+      0.9,
+      false,
+      _stroke,
     );
 
     // ── Small accent square — top-left ────────────────────────────────────
@@ -590,4 +623,3 @@ class _AbstractBgPainter extends CustomPainter {
   @override
   bool shouldRepaint(_AbstractBgPainter old) => old.t != t;
 }
-

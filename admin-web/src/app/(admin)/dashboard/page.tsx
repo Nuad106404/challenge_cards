@@ -1,6 +1,5 @@
 'use client';
 
-import AdminLayout from '@/components/layout/AdminLayout';
 import { usePacks } from '@/hooks/usePacks';
 import { useCards } from '@/hooks/useCards';
 import { useConfig } from '@/hooks/useConfig';
@@ -141,7 +140,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <AdminLayout>
+    <>
       <style>{`
         @keyframes cardFadeUp {
           from { opacity: 0; transform: translateY(12px); }
@@ -341,6 +340,6 @@ export default function DashboardPage() {
           </table>
         )}
       </div>
-    </AdminLayout>
+    </>
   );
 }

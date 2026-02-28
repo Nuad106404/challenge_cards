@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import AdminLayout from '@/components/layout/AdminLayout';
 import { localAdsService, LocalAd } from '@/services/local-ads.service';
 
 const API_BASE = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001').replace(/\/api$/, '');
@@ -203,7 +202,7 @@ export default function AdsPage() {
   });
 
   return (
-    <AdminLayout>
+    <>
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
         @keyframes spin   { to { transform:rotate(360deg); } }
@@ -519,6 +518,6 @@ export default function AdsPage() {
           )}
         </div>
       </div>
-    </AdminLayout>
+    </>
   );
 }

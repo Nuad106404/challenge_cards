@@ -105,12 +105,12 @@ class _HandGestureHint extends StatelessWidget {
           animation: controller,
           builder: (context, child) {
             final t = controller.value;
-            
+
             // Three smooth moves: right → left → right
             // Each segment occupies 1/3 of the timeline.
             // easeInOutCubic gives a natural decelerate-at-ends feel.
             const double kSwing = 52.0; // px travel each way
-            const double kTilt  = 0.13; // radians (~7.5°)
+            const double kTilt = 0.13; // radians (~7.5°)
 
             double offsetX;
             double rotation;
@@ -118,30 +118,33 @@ class _HandGestureHint extends StatelessWidget {
             if (t < 1 / 3) {
               // Segment 1: centre → right
               final p = Curves.easeInOutCubic.transform(t * 3);
-              offsetX  =  p * kSwing;
-              rotation =  p * kTilt;
+              offsetX = p * kSwing;
+              rotation = p * kTilt;
             } else if (t < 2 / 3) {
               // Segment 2: right → left
               final p = Curves.easeInOutCubic.transform((t - 1 / 3) * 3);
-              offsetX  =  kSwing - p * kSwing * 2; // +kSwing → -kSwing
-              rotation =  kTilt  - p * kTilt  * 2;
+              offsetX = kSwing - p * kSwing * 2; // +kSwing → -kSwing
+              rotation = kTilt - p * kTilt * 2;
             } else {
               // Segment 3: left → right
               final p = Curves.easeInOutCubic.transform((t - 2 / 3) * 3);
-              offsetX  = -kSwing + p * kSwing * 2; // -kSwing → +kSwing
-              rotation = -kTilt  + p * kTilt  * 2;
+              offsetX = -kSwing + p * kSwing * 2; // -kSwing → +kSwing
+              rotation = -kTilt + p * kTilt * 2;
             }
 
             // Subtle scale pulse tied to speed (fastest at segment midpoints)
             final speedT = (t * 3) % 1.0;
-            final scale  = 1.0 + 0.10 * (1 - (speedT * 2 - 1) * (speedT * 2 - 1));
+            final scale =
+                1.0 + 0.10 * (1 - (speedT * 2 - 1) * (speedT * 2 - 1));
 
             // Opacity pulses once per segment for attention
-            final pulseOpacity = 0.80 + 0.20 * (1 - (speedT * 2 - 1) * (speedT * 2 - 1));
+            final pulseOpacity =
+                0.80 + 0.20 * (1 - (speedT * 2 - 1) * (speedT * 2 - 1));
 
             return Center(
               child: Transform.translate(
-                offset: Offset(0, 100), // Position near center-bottom of card
+                offset:
+                    const Offset(0, 100), // Position near center-bottom of card
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -188,7 +191,9 @@ class _HandGestureHint extends StatelessWidget {
                               // avoids Opacity widget's per-frame saveLayer allocation.
                               color: Color.fromARGB(
                                 (pulseOpacity * 255).round().clamp(0, 255),
-                                255, 255, 255,
+                                255,
+                                255,
+                                255,
                               ),
                               shadows: const [
                                 Shadow(
@@ -222,14 +227,14 @@ class _HandGestureHint extends StatelessWidget {
                           width: 1.5,
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'SWIPE TO PLAY',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
                           letterSpacing: 2.5,
-                          shadows: const [
+                          shadows: [
                             Shadow(
                               color: Color(0x88000000),
                               blurRadius: 8,

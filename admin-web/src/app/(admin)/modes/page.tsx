@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import AdminLayout from '@/components/layout/AdminLayout';
 import ModeForm from '@/components/modes/ModeForm';
 import { useModes } from '@/hooks/useModes';
 import { useConfig } from '@/hooks/useConfig';
@@ -36,7 +35,7 @@ export default function ModesPage() {
   };
 
   return (
-    <AdminLayout>
+    <>
       <style>{pageFadeIn}</style>
 
       <PageHeader
@@ -104,6 +103,6 @@ export default function ModesPage() {
           onCancel={() => setDeleteConfirm(null)}
         />
       )}
-    </AdminLayout>
+    </>
   );
 }

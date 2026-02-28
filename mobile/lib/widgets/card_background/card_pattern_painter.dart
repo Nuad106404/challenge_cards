@@ -118,7 +118,7 @@ class CardPatternPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = size.width * 0.08;
 
-    final stripeCount = 4;
+    const stripeCount = 4;
     final spacing = size.width / stripeCount;
 
     for (int i = 0; i < stripeCount; i++) {
@@ -147,7 +147,7 @@ class CardPatternPainter extends CustomPainter {
 
   void _drawStar(Canvas canvas, Offset center, double radius, Paint paint) {
     final path = Path();
-    final points = 4;
+    const points = 4;
     final outerRadius = radius;
     final innerRadius = radius * 0.4;
 

@@ -72,17 +72,17 @@ class CardBackground extends StatelessWidget {
             ),
 
             // ── Edge vignette (darken corners) ─────────────────────────
-            Positioned.fill(
+            const Positioned.fill(
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     center: Alignment.center,
                     radius: 1.2,
-                    colors: const [
+                    colors: [
                       Color(0x00000000),
                       Color(0x18000000),
                     ],
-                    stops: const [0.5, 1.0],
+                    stops: [0.5, 1.0],
                   ),
                 ),
               ),

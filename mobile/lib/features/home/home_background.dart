@@ -127,65 +127,65 @@ class _HomeBackgroundState extends State<HomeBackground>
                       ),
                     ),
 
-                  // Top-left cool tint
-                  Positioned(
-                    top: -60,
-                    left: -40,
-                    child: Container(
-                      width: 260,
-                      height: 260,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          colors: [
-                            Color(0x206C63FF),
-                            Color(0x006C63FF),
-                          ],
+                    // Top-left cool tint
+                    Positioned(
+                      top: -60,
+                      left: -40,
+                      child: Container(
+                        width: 260,
+                        height: 260,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            colors: [
+                              Color(0x206C63FF),
+                              Color(0x006C63FF),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                  // Large faint blob — center-right
-                  Positioned(
-                    top: 180,
-                    right: -100,
-                    child: Container(
-                      width: 420,
-                      height: 420,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(210),
-                        gradient: const RadialGradient(
-                          colors: [
-                            Color(0x08E8436A),
-                            Color(0x00E8436A),
-                          ],
+                    // Large faint blob — center-right
+                    Positioned(
+                      top: 180,
+                      right: -100,
+                      child: Container(
+                        width: 420,
+                        height: 420,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(210),
+                          gradient: const RadialGradient(
+                            colors: [
+                              Color(0x08E8436A),
+                              Color(0x00E8436A),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                  // Large faint blob — bottom-left
-                  Positioned(
-                    bottom: -120,
-                    left: -80,
-                    child: Container(
-                      width: 380,
-                      height: 380,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(190),
-                        gradient: const RadialGradient(
-                          colors: [
-                            Color(0x064A90E2),
-                            Color(0x004A90E2),
-                          ],
+                    // Large faint blob — bottom-left
+                    Positioned(
+                      bottom: -120,
+                      left: -80,
+                      child: Container(
+                        width: 380,
+                        height: 380,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(190),
+                          gradient: const RadialGradient(
+                            colors: [
+                              Color(0x064A90E2),
+                              Color(0x004A90E2),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
             ),
           ),
 
@@ -215,12 +215,14 @@ class _NoisePainter extends CustomPainter {
 
   static List<_Grain> _buildGrains() {
     final rng = Random(42);
-    return List.generate(320, (_) => _Grain(
-      x: rng.nextDouble(),
-      y: rng.nextDouble(),
-      r: 0.6 + rng.nextDouble() * 1.0,
-      a: 0.02 + rng.nextDouble() * 0.045,
-    ));
+    return List.generate(
+        320,
+        (_) => _Grain(
+              x: rng.nextDouble(),
+              y: rng.nextDouble(),
+              r: 0.6 + rng.nextDouble() * 1.0,
+              a: 0.02 + rng.nextDouble() * 0.045,
+            ));
   }
 
   @override
@@ -229,7 +231,9 @@ class _NoisePainter extends CustomPainter {
     for (final g in _grains) {
       paint.color = Color.fromARGB(
         (g.a * 255).round(),
-        120, 80, 160,
+        120,
+        80,
+        160,
       );
       canvas.drawCircle(
         Offset(g.x * size.width, g.y * size.height),
@@ -240,12 +244,12 @@ class _NoisePainter extends CustomPainter {
 
     // Subtle vignette — darken edges slightly
     final vignette = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         center: Alignment.center,
         radius: 1.0,
         colors: [
-          const Color(0x00000000),
-          const Color(0x12000000),
+          Color(0x00000000),
+          Color(0x12000000),
         ],
       ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), vignette);
@@ -257,7 +261,8 @@ class _NoisePainter extends CustomPainter {
 
 class _Grain {
   final double x, y, r, a;
-  const _Grain({required this.x, required this.y, required this.r, required this.a});
+  const _Grain(
+      {required this.x, required this.y, required this.r, required this.a});
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

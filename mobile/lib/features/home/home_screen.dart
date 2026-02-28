@@ -47,7 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     } catch (e) {
-      if (mounted) setState(() { _modesError = 'Failed to load modes'; _modesLoading = false; });
+      if (mounted)
+        setState(() {
+          _modesError = 'Failed to load modes';
+          _modesLoading = false;
+        });
     }
   }
 
@@ -92,24 +96,24 @@ class _HomeScreenState extends State<HomeScreen> {
           const Positioned.fill(child: HomeBackground()),
 
           // ── Ambient floating orbs ──────────────────────────────────
-          Positioned(
+          const Positioned(
             top: -40,
             right: -30,
             child: AmbientOrb(
-              color: const Color(0x30FF4D8D),
+              color: Color(0x30FF4D8D),
               size: 220,
-              duration: const Duration(seconds: 7),
+              duration: Duration(seconds: 7),
               dx: 20,
               dy: 18,
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 60,
             left: -50,
             child: AmbientOrb(
-              color: const Color(0x226C63FF),
+              color: Color(0x226C63FF),
               size: 260,
-              duration: const Duration(seconds: 9),
+              duration: Duration(seconds: 9),
               dx: -16,
               dy: 22,
             ),
@@ -144,7 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w700,
-                                color: const Color(0xFFFF4D8D).withValues(alpha: 0.85),
+                                color: const Color(0xFFFF4D8D)
+                                    .withValues(alpha: 0.85),
                                 letterSpacing: 4.0,
                               ),
                             ),
@@ -173,7 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Settings button
                       const SizedBox(width: 8),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, SettingsScreen.routeName),
+                        onTap: () => Navigator.pushNamed(
+                            context, SettingsScreen.routeName),
                         child: Container(
                           width: 44,
                           height: 44,
@@ -244,23 +250,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Text(
                                       'No modes available.',
                                       style: TextStyle(
-                                        color: const Color(0xFF2D1B4E).withValues(alpha: 0.4),
+                                        color: const Color(0xFF2D1B4E)
+                                            .withValues(alpha: 0.4),
                                       ),
                                     ),
                                   )
                                 : ListView.separated(
                                     padding: const EdgeInsets.only(bottom: 24),
                                     itemCount: _modes.length,
-                                    separatorBuilder: (_, __) => const SizedBox(height: 14),
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 14),
                                     itemBuilder: (context, i) {
                                       final m = _modes[i];
                                       final locale = gameProvider.locale;
-                                      final isSelected = gameProvider.selectedMode?.slug == m.slug;
+                                      final isSelected =
+                                          gameProvider.selectedMode?.slug ==
+                                              m.slug;
 
                                       return ModeCard(
                                         key: ValueKey(m.slug),
                                         label: m.localizedName(locale),
-                                        description: m.localizedDescription(locale),
+                                        description:
+                                            m.localizedDescription(locale),
                                         selected: isSelected,
                                         index: i,
                                         cardKey: _cardKeys[i],
@@ -269,8 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           _updateSelectedCardRect(i);
                                           await gameProvider.startGame([]);
                                           if (!context.mounted) return;
-                                          if (gameProvider.state == GameState.playing) {
-                                            Navigator.pushNamed(context, GameScreen.routeName);
+                                          if (gameProvider.state ==
+                                              GameState.playing) {
+                                            Navigator.pushNamed(
+                                                context, GameScreen.routeName);
                                           }
                                         },
                                       );

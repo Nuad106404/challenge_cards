@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import AdminLayout from '@/components/layout/AdminLayout';
 import CardForm from '@/components/cards/CardForm';
 import { usePacks } from '@/hooks/usePacks';
 import { useCards } from '@/hooks/useCards';
@@ -72,7 +71,7 @@ export default function CardsPage() {
     s === 'published' ? 'published' : s === 'review' ? 'review' : 'draft';
 
   return (
-    <AdminLayout>
+    <>
       <style>{pageFadeIn}</style>
 
       <PageHeader
@@ -186,6 +185,6 @@ export default function CardsPage() {
           onCancel={() => setDeleteConfirm(null)}
         />
       )}
-    </AdminLayout>
+    </>
   );
 }

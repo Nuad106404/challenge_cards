@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import AdminLayout from '@/components/layout/AdminLayout';
 import { usePacks } from '@/hooks/usePacks';
 import { uploadsService } from '@/services/uploads.service';
 import { formInput, formLabel } from '@/components/shared/ui';
@@ -139,7 +138,7 @@ export default function UploadImageCardPage() {
   const fl = formLabel;
 
   return (
-    <AdminLayout>
+    <>
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
         @keyframes spin   { to { transform:rotate(360deg); } }
@@ -357,6 +356,6 @@ export default function UploadImageCardPage() {
           ) : '🎴 Upload & Create Card'}
         </button>
       </div>
-    </AdminLayout>
+    </>
   );
 }

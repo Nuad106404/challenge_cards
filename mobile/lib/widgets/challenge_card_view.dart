@@ -147,7 +147,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
       return url.replaceAll('localhost', '10.0.2.2');
     }
     String apiBase = dotenv.env['API_BASE_URL'] ?? 'http://10.0.2.2:3001';
-    if (apiBase.endsWith('/api')) apiBase = apiBase.substring(0, apiBase.length - 4);
+    if (apiBase.endsWith('/api'))
+      apiBase = apiBase.substring(0, apiBase.length - 4);
     return '$apiBase$url';
   }
 
@@ -194,7 +195,9 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
 
     // Block right swipe when no previous card
     if (_dragX > 0 && widget.onPrevious == null) {
-      setState(() { _dragX = 0; });
+      setState(() {
+        _dragX = 0;
+      });
       return;
     }
     if (!_hapticFired && _dragX.abs() > _kSwipeThreshold) {
@@ -264,7 +267,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                 Offset.zero,
                 Offset(swipeExitWidth * _swipeDirection, 0),
                 Curves.easeOutCubic.transform(_swipeCtrl.value),
-              )!.dx
+              )!
+                .dx
             : _dragX;
 
         final swipeDy = _swipeTriggered ? 0.0 : _dragX * 0.08;
@@ -294,7 +298,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                     if (_glowCtrl.value > 0)
                       Positioned.fill(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(36),
                             boxShadow: [
@@ -313,7 +318,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                         ),
                       ),
                     // Card shell with content
-                    if (widget.card.contentSource == 'image' && widget.card.imageUrl != null)
+                    if (widget.card.contentSource == 'image' &&
+                        widget.card.imageUrl != null)
                       // ── Image card: full-bleed image, bottom overlay only ──
                       _CardShell(
                         style: _style,
@@ -347,7 +353,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                _TypeBadge(type: widget.card.type, style: _style),
+                                _TypeBadge(
+                                    type: widget.card.type, style: _style),
                               ],
                             ),
                           ),
@@ -401,7 +408,8 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                             Expanded(
                               child: Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -429,19 +437,24 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                                       if (widget.card.diceCount > 0) ...[
                                         const SizedBox(height: 16),
                                         Container(
-                                          constraints: const BoxConstraints(maxHeight: 340),
-                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                          constraints: const BoxConstraints(
+                                              maxHeight: 340),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 16, vertical: 12),
                                           decoration: BoxDecoration(
                                             color: const Color(0x26000000),
-                                            borderRadius: BorderRadius.circular(20),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                             border: Border.all(
                                               color: const Color(0x26FFFFFF),
                                               width: 1,
                                             ),
                                           ),
                                           child: SingleChildScrollView(
-                                            physics: const NeverScrollableScrollPhysics(),
-                                            child: DiceRoller(count: widget.card.diceCount),
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            child: DiceRoller(
+                                                count: widget.card.diceCount),
                                           ),
                                         ),
                                       ],
@@ -464,14 +477,15 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                _TypeBadge(type: widget.card.type, style: _style),
+                                _TypeBadge(
+                                    type: widget.card.type, style: _style),
                                 const SizedBox(height: 8),
                               ],
                             ),
                           ],
                         ),
                       ),
-                    
+
                     // ── Swipe hint overlays (HUD style) ────────────────────
                     // Right swipe hint (NEXT) - upper right quadrant
                     if (isSwipingLeft)
@@ -485,7 +499,7 @@ class _ChallengeCardViewState extends State<ChallengeCardView>
                           opacity: hintOpacity,
                         ),
                       ),
-                    
+
                     // Left swipe hint (BACK) - upper left quadrant
                     if (isSwipingRight)
                       Positioned(
@@ -559,7 +573,8 @@ class _CardShell extends StatelessWidget {
           ),
           // Layer 3: Contact shadow
           BoxShadow(
-            color: Color.fromARGB((0.15 * shadowIntensity * 255).round(), 0, 0, 0),
+            color:
+                Color.fromARGB((0.15 * shadowIntensity * 255).round(), 0, 0, 0),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -594,7 +609,8 @@ class _CardShell extends StatelessWidget {
                     fit: BoxFit.fill,
                     alignment: Alignment.center,
                     fadeInDuration: const Duration(milliseconds: 150),
-                    placeholder: (_, __) => const ColoredBox(color: Color(0x33000000)),
+                    placeholder: (_, __) =>
+                        const ColoredBox(color: Color(0x33000000)),
                     errorWidget: (_, __, ___) => const SizedBox.shrink(),
                   ),
                 ),
@@ -611,7 +627,7 @@ class _CardShell extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Top light reflection (static)
               Positioned(
                 top: 0,
@@ -624,7 +640,9 @@ class _CardShell extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        isActive ? const Color(0x2EFFFFFF) : const Color(0x1FFFFFFF),
+                        isActive
+                            ? const Color(0x2EFFFFFF)
+                            : const Color(0x1FFFFFFF),
                         const Color(0x00FFFFFF),
                       ],
                     ),
@@ -639,13 +657,13 @@ class _CardShell extends StatelessWidget {
                 right: 0,
                 child: Container(
                   height: 80,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        const Color(0x14000000),
-                        const Color(0x00000000),
+                        Color(0x14000000),
+                        Color(0x00000000),
                       ],
                     ),
                   ),
@@ -660,14 +678,14 @@ class _CardShell extends StatelessWidget {
                   left: (lightReflectionOffset * 300).clamp(-100.0, 400.0),
                   child: Container(
                     width: 120,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          const Color(0x00FFFFFF),
-                          const Color(0x14FFFFFF),
-                          const Color(0x00FFFFFF),
+                          Color(0x00FFFFFF),
+                          Color(0x14FFFFFF),
+                          Color(0x00FFFFFF),
                         ],
                       ),
                     ),
@@ -675,31 +693,31 @@ class _CardShell extends StatelessWidget {
                 ),
 
               // Abstract geometric shapes + diagonal lines (hidden for image cards)
-              if (imageUrl == null) ...
-                [
-                  // RepaintBoundary isolates the continuous geometry animation
-                  // so it doesn't dirty the text/badge layers above it.
-                  Positioned.fill(
-                    child: RepaintBoundary(
-                      child: _AnimatedGeometry(
-                        color: style.gradient.first,
-                        seed: style.gradient.first.toARGB32(),
-                      ),
+              if (imageUrl == null) ...[
+                // RepaintBoundary isolates the continuous geometry animation
+                // so it doesn't dirty the text/badge layers above it.
+                Positioned.fill(
+                  child: RepaintBoundary(
+                    child: _AnimatedGeometry(
+                      color: style.gradient.first,
+                      seed: style.gradient.first.toARGB32(),
                     ),
                   ),
-                  Positioned.fill(
-                    child: CustomPaint(
-                      painter: _DiagonalLinePainter(),
-                    ),
+                ),
+                const Positioned.fill(
+                  child: CustomPaint(
+                    painter: _DiagonalLinePainter(),
                   ),
-                ],
+                ),
+              ],
 
               // Content (no padding for image cards)
               if (imageUrl != null)
                 child
               else
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 28),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 28),
                   child: child,
                 ),
             ],
@@ -965,11 +983,13 @@ class _AbstractGeometryPainter extends CustomPainter {
     final sqAngle = t3 * 1.2;
     final sqCx = w * 0.22 + t2 * 12 - 6;
     final sqCy = h * 0.12;
-    final sqSize = 22.0;
+    const sqSize = 22.0;
     canvas.save();
     canvas.translate(sqCx, sqCy);
     canvas.rotate(sqAngle);
-    canvas.drawRect(Rect.fromCenter(center: Offset.zero, width: sqSize, height: sqSize), paint);
+    canvas.drawRect(
+        Rect.fromCenter(center: Offset.zero, width: sqSize, height: sqSize),
+        paint);
     canvas.restore();
 
     // ── Thin horizontal accent lines (mid-card) ───────────────────────────
@@ -978,7 +998,8 @@ class _AbstractGeometryPainter extends CustomPainter {
       ..strokeWidth = 0.8;
     final lineY = h * 0.72 + t1 * 8 - 4;
     canvas.drawLine(Offset(w * 0.08, lineY), Offset(w * 0.38, lineY), paint);
-    canvas.drawLine(Offset(w * 0.08, lineY + 6), Offset(w * 0.24, lineY + 6), paint);
+    canvas.drawLine(
+        Offset(w * 0.08, lineY + 6), Offset(w * 0.24, lineY + 6), paint);
 
     // ── Arc slice (bottom-right) ───────────────────────────────────────────
     paint
@@ -1025,7 +1046,11 @@ class _AbstractGeometryPainter extends CustomPainter {
       final angle = (i * 60 - 30) * pi / 180;
       final px = hCx + hR * cos(angle);
       final py = hCy + hR * sin(angle);
-      if (i == 0) hexPath.moveTo(px, py); else hexPath.lineTo(px, py);
+      if (i == 0) {
+        hexPath.moveTo(px, py);
+      } else {
+        hexPath.lineTo(px, py);
+      }
     }
     hexPath.close();
     canvas.drawPath(hexPath, paint);
@@ -1064,4 +1089,3 @@ class _DiagonalLinePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
-

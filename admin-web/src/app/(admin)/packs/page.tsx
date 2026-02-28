@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import AdminLayout from '@/components/layout/AdminLayout';
 import PackForm from '@/components/packs/PackForm';
 import { usePacks } from '@/hooks/usePacks';
 import { useModes } from '@/hooks/useModes';
@@ -38,7 +37,7 @@ export default function PacksPage() {
   };
 
   return (
-    <AdminLayout>
+    <>
       <style>{pageFadeIn}</style>
 
       <PageHeader
@@ -106,6 +105,6 @@ export default function PacksPage() {
           onCancel={() => setDeleteConfirm(null)}
         />
       )}
-    </AdminLayout>
+    </>
   );
 }

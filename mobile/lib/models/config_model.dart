@@ -57,7 +57,7 @@ class ConfigModel {
       updatedAt: json['updatedAt'] as String? ?? '',
       supportedLanguages: langs.isNotEmpty
           ? langs
-          : [SupportedLanguage(code: 'en', label: 'English')],
+          : [const SupportedLanguage(code: 'en', label: 'English')],
       adRotationDuration: json['adRotationDuration'] as int? ?? 5,
       apiBaseUrl: json['apiBaseUrl'] as String? ?? '',
     );
@@ -72,7 +72,8 @@ class ConfigModel {
         'contentVersion': contentVersion,
         'minAppVersion': minAppVersion,
         'updatedAt': updatedAt,
-        'supportedLanguages': supportedLanguages.map((l) => l.toJson()).toList(),
+        'supportedLanguages':
+            supportedLanguages.map((l) => l.toJson()).toList(),
         'adRotationDuration': adRotationDuration,
         'apiBaseUrl': apiBaseUrl,
       };

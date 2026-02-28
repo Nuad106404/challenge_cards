@@ -179,8 +179,8 @@ class _DiceRollerState extends State<DiceRoller> with TickerProviderStateMixin {
       child: AnimatedBuilder(
         animation: Listenable.merge([_glowCtrl, _bounceCtrl]),
         builder: (context, child) {
-          final pulse = _glowAnim.value;       // 0.0 → 1.0 → 0.0 looping
-          final bounce = _bounceAnim.value;    // 0 → -10 → 0 looping
+          final pulse = _glowAnim.value; // 0.0 → 1.0 → 0.0 looping
+          final bounce = _bounceAnim.value; // 0 → -10 → 0 looping
 
           // Die shadow: blur 6→28, alpha 0x80→0xE6
           final shadowBlur = 6.0 + pulse * 22.0;
@@ -266,9 +266,9 @@ class _DiceRollerState extends State<DiceRoller> with TickerProviderStateMixin {
               ],
               const SizedBox(height: 12),
               // Hint row
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Icon(
                     Icons.vibration_rounded,
                     size: 13,
@@ -341,7 +341,8 @@ class _DieFace extends StatelessWidget {
       duration: const Duration(milliseconds: 100),
       transitionBuilder: (child, anim) => ScaleTransition(
         scale: CurvedAnimation(parent: anim, curve: Curves.easeOutBack),
-        child: child, // pure scale — no opacity, avoids Impeller CanAcceptOpacity error
+        child:
+            child, // pure scale — no opacity, avoids Impeller CanAcceptOpacity error
       ),
       child: Container(
         key: ValueKey(value),
@@ -413,34 +414,70 @@ class _DotLayout extends StatelessWidget {
   // Each face is a 3x3 grid. true = dot, false = empty.
   static const _faces = <int, List<bool>>{
     1: [
-      false, false, false,
-      false, true,  false,
-      false, false, false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
     ],
     2: [
-      true,  false, false,
-      false, false, false,
-      false, false, true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
     ],
     3: [
-      true,  false, false,
-      false, true,  false,
-      false, false, true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
     ],
     4: [
-      true,  false, true,
-      false, false, false,
-      true,  false, true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
     ],
     5: [
-      true,  false, true,
-      false, true,  false,
-      true,  false, true,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
     ],
     6: [
-      true,  false, true,
-      true,  false, true,
-      true,  false, true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
     ],
   };
 
@@ -480,10 +517,10 @@ class _Dot extends StatelessWidget {
       child: Container(
         width: 13,
         height: 13,
-        decoration: BoxDecoration(
-          color: const Color(0xFF1A1A2E),
+        decoration: const BoxDecoration(
+          color: Color(0xFF1A1A2E),
           shape: BoxShape.circle,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: Color(0x4D000000), // black 30%
               blurRadius: 3,

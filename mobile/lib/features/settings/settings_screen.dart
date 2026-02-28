@@ -73,7 +73,8 @@ class _SettingsScreenState extends State<SettingsScreen>
     await CacheService.instance.clearAll();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Cache cleared. Restart to reload content.')),
+      const SnackBar(
+          content: Text('Cache cleared. Restart to reload content.')),
     );
   }
 
@@ -82,8 +83,9 @@ class _SettingsScreenState extends State<SettingsScreen>
     final config = ConfigService.instance.current;
     final gameProvider = context.watch<GameProvider>();
     final currentLocale = CacheService.instance.getLocale();
-    final languages = (config?.supportedLanguages == null || config!.supportedLanguages.isEmpty)
-        ? [SupportedLanguage(code: 'en', label: 'English')]
+    final languages = (config?.supportedLanguages == null ||
+            config!.supportedLanguages.isEmpty)
+        ? [const SupportedLanguage(code: 'en', label: 'English')]
         : config.supportedLanguages;
 
     return Scaffold(
@@ -261,7 +263,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 InfoTile(
                                   icon: Icons.ads_click_outlined,
                                   label: 'Ads Status',
-                                  value: config.adsEnabled ? 'Enabled' : 'Disabled',
+                                  value: config.adsEnabled
+                                      ? 'Enabled'
+                                      : 'Disabled',
                                 ),
                               ],
                             ),
@@ -322,6 +326,7 @@ class _AdultModeCardState extends State<_AdultModeCard> {
     setState(() => _pressing = false);
     widget.onToggle(!widget.enabled);
   }
+
   void _onTapCancel() => setState(() => _pressing = false);
 
   @override

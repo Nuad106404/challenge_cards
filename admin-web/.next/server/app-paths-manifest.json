@@ -1,1 +1,8 @@
-{}
+{
+  "/(admin)/cards/page": "app/(admin)/cards/page.js",
+  "/(admin)/packs/page": "app/(admin)/packs/page.js",
+  "/(admin)/modes/page": "app/(admin)/modes/page.js",
+  "/(admin)/dashboard/page": "app/(admin)/dashboard/page.js",
+  "/(admin)/config/page": "app/(admin)/config/page.js",
+  "/(admin)/ads/page": "app/(admin)/ads/page.js"
+}
